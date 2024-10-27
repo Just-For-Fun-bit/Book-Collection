@@ -1,0 +1,992 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #e0e0e0; /* Light text color for dark background */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #2c2c2c; /* Dark background color */
+    padding-top: 80px; /* Offset for fixed header */
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+header {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px; /* Set a maximum width for larger screens */
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: rgba(40, 40, 40, 0.7); /* Slightly more transparent for a softer look */
+    backdrop-filter: blur(15px) saturate(180%); /* Increased blur and saturation for a more polished effect */
+    color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37); /* Softer, more diffused shadow */
+    z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+}
+
+header:hover {
+    background-color: rgba(40, 40, 40, 0.8); /* Slightly darker on hover */
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between title and search */
+    width: 100%;
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 300px; /* Set a maximum width for the search box */
+    margin: 10px 0; /* Add some margin for spacing */
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-right: 40px;
+    color: #fff;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    margin-left: 20px;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #b0b0b0; /* Softer text color */
+    font-weight: bold;
+    font-size: 1.1rem;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: #fff;
+}
+
+.view-toggle {
+    display: flex;
+    gap: 10px; /* Add space between the list and grid view buttons */
+    margin-left: auto; /* Push to the far right */
+}
+
+.view-toggle button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 10px;
+    transition: opacity 0.3s ease;
+    color: #fff;
+}
+
+.view-toggle button:hover {
+    opacity: 0.7;
+}
+
+.list-view {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px; /* Align with header's max-width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.book {
+    background-color: #3a3a3a; /* Darker card background */
+    border: 1px solid #444;
+    padding: 20px;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.book:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.book h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #e0e0e0;
+}
+
+.book p {
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.read-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.read-button:hover {
+    background-color: #777;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-content {
+        flex-direction: row; /* Align title and search horizontally */
+        align-items: center;
+    }
+
+    h1 {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .view-toggle {
+        align-self: flex-end;
+    }
+
+    .grid-view {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-container {
+        width: auto;
+        margin-top: 0; /* Remove top margin */
+    }
+
+    .nav-menu {
+        display: none; /* Hide the nav menu */
+    }
+
+    .menu-button {
+        display: flex; /* Show the menu button */
+    }
+
+    .header-content {
+        flex-direction: column;
+        align-items: center; /* Center items horizontally */
+    }
+
+    h1 {
+        margin: 10px 0; /* Add some vertical margin */
+        text-align: center; /* Center the text */
+    }
+
+    .search-container {
+        width: 100%;
+        margin-top: 10px; /* Add space above the search bar */
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-view {
+        grid-template-columns: 1fr;
+    }
+
+    .book {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    nav ul li a {
+        font-size: 1rem;
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000; /* Increase z-index to ensure it appears above other elements */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(1.5px);
+}
+
+.modal-content {
+    position: relative;
+    max-width: 40vw; /* Smaller width */
+    max-height: 40vh; /* Smaller height */
+    margin: 30vh auto; /* Center the modal with space from top and bottom */
+    overflow: visible; /* Allow content to expand naturally */
+    background-color: #2c2c2c; /* Ensure background color is set */
+    border-radius: 10px; /* Add border radius for aesthetics */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+    padding: 20px; /* Add padding for content spacing */
+}
+
+.close-button {
+    color: #e0e0e0;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+main {
+    margin-top: 100px; /* Adjusted space for fixed header */
+    max-width: 1200px; /* Align with header's max-width */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+.hero {
+    background-image: url('images/hero-image.jpg'); /* Use local image path */
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    z-index: 0;
+    margin-top: 80px; /* Offset for fixed header */
+    overflow: hidden; /* Ensure child elements don't overflow */
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for contrast */
+    backdrop-filter: blur(2px); /* Apply blur effect */
+    z-index: -1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1; /* Ensure text is above the overlay */
+}
+
+.hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for depth */
+    letter-spacing: 1px; /* Slight letter spacing */
+}
+
+.hero p {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+    max-width: 600px; /* Limit width for better readability */
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8; /* Improve line spacing */
+}
+
+.explore-button {
+    padding: 12px 25px;
+    background-color: #555; /* Darker color for dark theme */
+    color: #fff;
+    border: none;
+    border-radius: 25px; /* More rounded button */
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+}
+
+.explore-button:hover {
+    background-color: #777; /* Slightly lighter on hover */
+    transform: translateY(-3px); /* Lift effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+#searchInput {
+    padding: 5px 30px 5px 10px; /* Adjust padding to make space for the clear button */
+    border-radius: 5px;
+    border: 1px solid #555;
+    font-size: 1rem;
+    width: 100%;
+    background-color: #444;
+    color: #e0e0e0;
+}
+
+#searchInput::placeholder {
+    color: #b0b0b0;
+    opacity: 1;
+}
+
+.clear-button {
+    position: absolute;
+    right: 10px; /* Position the button inside the input */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #b0b0b0;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.clear-button:hover {
+    color: #fff;
+}
+
+.book-cover {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 20px;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    transition: 0.3s;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: rgba(40, 40, 40, 0.9);
+        padding: 10px 0;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-menu li {
+        margin: 10px 0;
+    }
+}
+.menu-button {
+    position: absolute;
+    top: 120%; /* Keep the same position */
+    left: 20px;
+    display: none; /* Initially hidden */
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(40, 40, 40, 0.8);
+    border: none;
+    border-radius: 5px;
+    padding: 20px 25px;
+    cursor: pointer;
+    z-index: 1100;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.menu-button:hover {
+    background-color: rgba(40, 40, 40, 1);
+}
+
+.menu-text {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem; /* Increase font size for better visibility */
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .menu-button {
+        display: flex; /* Show on smaller screens */
+    }
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Start off-screen */
+    width: 250px;
+    height: 100%;
+    background-color: rgba(40, 40, 40, 0.9);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: left 0.3s ease;
+    z-index: 1200;
+    padding-top: 60px; /* Space for header */
+}
+
+.side-menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.side-menu ul li {
+    padding: 15px 20px;
+}
+
+.side-menu ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    display: block;
+}
+
+.side-menu ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.side-menu.active {
+    left: 0; /* Slide in */
+}
+
+@media (max-width: 900px) and (min-width: 768px) {
+    .search-container {
+        width: 100%; /* Full width for the search bar */
+        margin-top: 10px; /* Add space above the search bar */
+    }
+
+    .nav-menu ul {
+        display: flex;
+        flex-wrap: wrap; /* Allow items to wrap */
+    }
+
+    .nav-menu li.search-container {
+        flex-basis: 100%; /* Make search container take full width */
+    }
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 300px; /* Set a maximum width for the search box */
+    margin: 10px 0; /* Add some margin for spacing */
+}
+
+#headerSearchInput,
+#hamburgerSearchInput {
+    width: 100%;
+    padding: 10px 40px 10px 15px; /* Add padding for the clear button */
+    border-radius: 25px; /* Rounded corners */
+    border: 1px solid #555;
+    background-color: #333; /* Darker background for contrast */
+    color: #e0e0e0;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#headerSearchInput:focus,
+#hamburgerSearchInput:focus {
+    border-color: #888; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Add a subtle glow */
+    outline: none; /* Remove default outline */
+}
+
+.clear-button {
+    position: absolute;
+    right: 15px; /* Position the button inside the input */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #b0b0b0;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.clear-button:hover {
+    color: #fff; /* Change color on hover */
+}
+
+.view-toggle {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.nav-menu ul {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Add space between items */
+}
+
+.nav-menu li {
+    white-space: nowrap; /* Prevent line breaks */
+}
+
+.nav-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.modal-section {
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 1.4rem;
+    color: #4CAF50; /* Soft green for the section title */
+    margin-bottom: 10px;
+    display: block;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+.key-themes-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.key-theme-item {
+    background: linear-gradient(135deg, #2c2c2c, #3a3a3a); /* Dark gradient matching the site theme */
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    color: #e0e0e0; /* Light text for readability */
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.key-theme-item:hover {
+    background: linear-gradient(135deg, #4a4a4a, #5a5a5a); /* Subtle grey gradient on hover */
+    transform: translateY(-5px); /* More pronounced lift effect on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
+}
+
+.key-theme-item strong {
+    color: #4CAF50; /* Soft green for key theme titles */
+    font-weight: bold;
+}
+
+.section-divider {
+    margin: 20px 0;
+    border: 0;
+    border-top: 2px solid transparent;
+    border-image: linear-gradient(to right, #4CAF50, #2c2c2c, #4CAF50);
+    border-image-slice: 1;
+}
+
+.summary-section {
+    background: linear-gradient(135deg, #3a3a3a, #4a4a4a); /* Slightly lighter gradient for contrast */
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    color: #f0f0f0; /* Light text for readability */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.summary-section:hover {
+    transform: translateY(-3px); /* Lift effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
+}
+
+.summary-section strong {
+    color: #87CEEB; /* Soft sky blue for emphasis */
+    font-weight: bold;
+}
+
+.summary-section ol {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.summary-section li {
+    margin-bottom: 15px;
+}
+
+.summary-section ul {
+    list-style-type: none; /* Remove default bullet points */
+    padding-left: 0; /* Remove padding for the list */
+    margin-top: 5px;
+}
+
+.summary-section ul li {
+    margin-bottom: 10px;
+    color: #dcdcdc; /* Slightly darker text for sub-items */
+    position: relative;
+    padding: 15px;
+    background-color: #2e2e2e; /* Darker background for sub-point boxes */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for sub-point boxes */
+    margin-top: 10px;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+    .summary-section {
+        padding: 15px;
+        margin-top: 15px;
+    }
+
+    .summary-section ol {
+        padding-left: 15px;
+    }
+
+    .summary-section ul li {
+        padding: 10px;
+        margin-bottom: 8px;
+    }
+
+    .book-cover {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .modal-section {
+        margin-bottom: 15px;
+    }
+
+    .section-title {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    .key-theme-item {
+        padding: 10px;
+        margin-bottom: 8px;
+    }
+}
+
+.pin-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: #4CAF50; /* Soft green color */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    display: none; /* Initially hidden */
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.pin-to-top:hover {
+    background-color: #45a049; /* Slightly darker green on hover */
+    transform: translateY(-3px);
+}
+
+.modal .pin-to-top {
+    position: absolute; /* Position relative to the modal content */
+    bottom: 20px; /* Adjust position as needed */
+    right: 20px; /* Adjust position as needed */
+    width: 40px;
+    height: 40px;
+    background-color: #4CAF50; /* Soft green color */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    display: flex; /* Always show in modal */
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+.modal .pin-to-top:hover {
+    background-color: #45a049; /* Slightly darker green on hover */
+    transform: translateY(-3px);
+}
+
+.scrollable-content {
+    /* Remove max-height and overflow-y to disable scrolling */
+    padding-right: 10px; /* Retain padding if needed */
+}
+
+.modal-content {
+    position: relative;
+    overflow: visible; /* Allow content to expand naturally */
+    max-width: 90vw; /* Responsive width for smaller screens */
+    margin: 0 auto; /* Center the modal content */
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        max-width: 95vw; /* Adjust width for smaller screens */
+    }
+}
+
+/* Improved responsive typography and padding */
+h1, h2, p {
+    margin: 0 10px;
+}
+
+h1 {
+    font-size: 2rem; /* Smaller base size for better mobile readability */
+}
+
+h2 {
+    font-size: 1.5rem; /* Adjusted for clarity on smaller screens */
+}
+
+p {
+    font-size: 1rem; /* Ensuring text is not too small on mobile devices */
+}
+
+/* Responsive adjustments for modal content */
+.modal-content {
+    padding: 20px;
+    max-width: 90%; /* Allow more width on smaller screens */
+    margin: 10% auto; /* Centering modal more effectively */
+}
+
+/* Ensure modal text is readable on all devices */
+#modalText {
+    font-size: 0.9rem; /* Slightly smaller font size for mobile devices */
+    line-height: 1.5; /* Increased line height for better readability */
+}
+
+/* Responsive settings for summary sections */
+.summary-section {
+    padding: 15px;
+    font-size: 0.9rem; /* Adjust font size for mobile readability */
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem; /* Slightly larger than h2 for hierarchy */
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    p, .summary-section {
+        font-size: 0.85rem; /* Smaller font size for compact display */
+    }
+
+    .modal-content {
+        padding: 15px;
+        max-width: 95%; /* More width for very small screens */
+    }
+
+    #modalText {
+        font-size: 0.8rem; /* Smaller font for modal text on very small screens */
+    }
+}
+
+/* Further adjustments for very small screens */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    p, .summary-section {
+        font-size: 0.8rem; /* Even smaller font size for very small devices */
+    }
+
+    .modal-content {
+        padding: 10px;
+        max-width: 100%; /* Use full width available */
+    }
+
+    #modalText {
+        font-size: 0.75rem; /* Minimum readable size for modal text */
+    }
+}
+
+/* Common styles for key themes and summary sections */
+.modal-section, .summary-section {
+    padding: 15px;
+    background-color: #333; /* Uniform dark background for both sections */
+    border-radius: 8px; /* Rounded corners for a softer look */
+    margin-bottom: 20px; /* Space between sections */
+    color: #e0e0e0; /* Light text color for readability */
+}
+
+.section-title {
+    font-size: 1.2rem; /* Slightly larger font size for section titles */
+    color: #fff; /* White color for emphasis */
+    margin-bottom: 10px; /* Space below the title */
+}
+
+/* Styles for list items in key themes and summary */
+.key-theme-item, .summary-section p {
+    font-size: 0.9rem; /* Uniform font size for content */
+    line-height: 1.5; /* Spacing for readability */
+    margin-bottom: 8px; /* Space between list items or paragraphs */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .modal-section, .summary-section {
+        padding: 10px;
+        font-size: 0.85rem; /* Smaller font size for compact display */
+    }
+
+    .section-title {
+        font-size: 1rem; /* Smaller font size for titles */
+    }
+}
+
+/* Further adjustments for very small screens */
+@media (max-width: 480px) {
+    .modal-section, .summary-section {
+        padding: 8px;
+        font-size: 0.8rem; /* Even smaller font size for very small devices */
+    }
+
+    .section-title {
+        font-size: 0.9rem; /* Adjusted font size for very small screens */
+    }
+}
+
+/* Common styles for modal sections */
+.modal-section {
+    padding: 20px;
+    background-color: #333; /* Consistent background color */
+    border-radius: 8px; /* Uniform rounded corners */
+    margin-bottom: 20px; /* Consistent spacing between sections */
+    color: #e0e0e0; /* Uniform text color for readability */
+}
+
+.section-title {
+    font-size: 1.2rem; /* Uniform font size for section titles */
+    color: #fff; /* Consistent color for emphasis */
+    margin-bottom: 10px; /* Consistent space below the title */
+}
+
+.key-theme-item, .summary-section p {
+    font-size: 0.9rem; /* Uniform font size for content */
+    line-height: 1.5; /* Consistent line spacing for readability */
+    margin-bottom: 8px; /* Uniform space between list items or paragraphs */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .modal-section {
+        padding: 15px;
+        font-size: 0.85rem; /* Smaller font size for compact display */
+    }
+
+    .section-title {
+        font-size: 1rem; /* Smaller font size for titles */
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-section {
+        padding: 10px;
+        font-size: 0.8rem; /* Even smaller font size for very small devices */
+    }
+
+    .section-title {
+        font-size: 0.9rem; /* Adjusted font size for very small screens */
+    }
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Collection</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Bookshelf</h1>
+            <button class="menu-button" id="menuButton" aria-label="Toggle menu">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#" class="active" data-category="all">All</a></li>
+                    <li><a href="#" data-category="fiction">Fiction</a></li>
+                    <li><a href="#" data-category="non-fiction">Non-Fiction</a></li>
+                    <li class="search-container">
+                        <input type="text" id="headerSearchInput" placeholder="Search books...">
+                        <span id="headerClearSearch" class="clear-button" style="display: none;">&times;</span>
+                    </li>
+                    <li class="view-toggle">
+                        <button id="listView" aria-label="List View">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <line x1="8" y1="6" x2="21" y2="6"></line>
+                                <line x1="8" y1="12" x2="21" y2="12"></line>
+                                <line x1="8" y1="18" x2="21" y2="18"></line>
+                                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                            </svg>
+                        </button>
+                        <button id="gridView" aria-label="Grid View">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="side-menu" id="sideMenu">
+        <ul>
+            <li><a href="#" data-category="all">All</a></li>
+            <li><a href="#" data-category="fiction">Fiction</a></li>
+            <li><a href="#" data-category="non-fiction">Non-Fiction</a></li>
+            <li class="search-container">
+                <input type="text" id="hamburgerSearchInput" placeholder="Search books...">
+                <span id="hamburgerClearSearch" class="clear-button" style="display: none;">&times;</span>
+            </li>
+            <li class="view-toggle">
+                <button id="hamburgerListView" aria-label="List View">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="8" y1="6" x2="21" y2="6"></line>
+                        <line x1="8" y1="12" x2="21" y2="12"></line>
+                        <line x1="8" y1="18" x2="21" y2="18"></line>
+                        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                    </svg>
+                </button>
+                <button id="hamburgerGridView" aria-label="Grid View">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Welcome to Your Bookshelf</h2>
+            <p>Discover a world of literature and knowledge.</p>
+            <button class="explore-button">Explore Now</button>
+        </div>
+    </section>
+    <main>
+        <div id="bookContainer" class="list-view">
+            <!-- Books will be dynamically added here -->
+        </div>
+    </main>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p id="modalText"></p>
+        </div>
+    </div>
+    <button id="pinToTop" class="pin-to-top" aria-label="Scroll to top">↑</button>
+    <script src="script.js"></script>
+</body>
+
+</html>
