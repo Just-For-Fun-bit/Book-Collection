@@ -55,14 +55,14 @@ const books = [
         author: "Gabriel García Márquez", 
         year: 1967, 
         category: "fiction", 
-        image: "images/image5.jpg"
+        image: "images/One Hundred Years of Solitude.png"
     },
     { 
         title: "Brave New World", 
         author: "Aldous Huxley", 
         year: 1932, 
         category: "fiction", 
-        image: "images/image6.jpg"
+        image: "images/Brave New World.png"
     },
     { 
         title: "A Brief History of Time", 
@@ -103,14 +103,14 @@ const books = [
         author: "Rebecca Skloot", 
         year: 2010, 
         category: "non-fiction", 
-        image: "images/image8.jpg"
+        image: "images/The Immortal Life of Henrietta Lacks.png"
     },
     { 
         title: "Sapiens: A Brief History of Humankind", 
         author: "Yuval Noah Harari", 
         year: 2014, 
         category: "non-fiction", 
-        image: "images/image9.jpg"
+        image: "images/Sapiens - A Brief History of Humankind.png"
     },
 ];
 
@@ -120,9 +120,9 @@ function createBookElement(book) {
     bookElement.innerHTML = `
         <img src="${book.image}" alt="${book.title} cover" class="book-cover">
         <h2>${book.title}</h2>
-        <p>Author: ${book.author}</p>
-        <p>Year: ${book.year}</p>
-        <p>Category: ${book.category}</p>
+        <p data-label="Author">${book.author}</p>
+        <p data-label="Year">${book.year}</p>
+        <p data-label="Genre">${book.category.charAt(0).toUpperCase() + book.category.slice(1)}</p>
         <button class="read-button">Read Book</button>
     `;
 
@@ -322,13 +322,14 @@ function handleSearchInput(inputElement, clearButton) {
     inputElement.addEventListener('input', () => {
         const query = inputElement.value.toLowerCase();
         displayBooks('all', query);
-        clearButton.style.display = query ? 'block' : 'none';
+        clearButton.style.display = query ? 'block' : 'none'; // Show clear button if there's input
     });
 
     clearButton.addEventListener('click', () => {
         inputElement.value = '';
-        displayBooks('all', '');
-        clearButton.style.display = 'none';
+        displayBooks('all', ''); // Clear search results
+        clearButton.style.display = 'none'; // Hide clear button
+        inputElement.focus(); // Focus back on the input
     });
 }
 
@@ -416,3 +417,4 @@ function toggleLanguage(isHindi) {
         </ol>
     `;
 }
+

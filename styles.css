@@ -124,17 +124,17 @@ nav ul li a.active {
 }
 
 .book {
-    background-color: #3a3a3a; /* Darker card background */
-    border: 1px solid #444;
+    background: linear-gradient(145deg, #3a3a3a, #2d2d2d);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 20px;
-    border-radius: 10px;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .book:hover {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
 
 .book h2 {
@@ -142,28 +142,66 @@ nav ul li a.active {
     font-size: 1.8rem;
     margin-bottom: 10px;
     color: #e0e0e0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid rgba(76, 175, 80, 0.4);
+    padding-bottom: 8px;
 }
 
 .book p {
     font-size: 1rem;
-    color: #ccc;
+    color: #b0b0b0;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+}
+
+.book p::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #4CAF50;
+    min-width: 80px;
+    text-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+.book img.book-cover {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book:hover img.book-cover {
+    transform: scale(1.05);
 }
 
 .read-button {
-    display: inline-block;
     margin-top: 10px;
-    padding: 10px 15px;
-    background-color: #555;
-    color: #fff;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
     font-size: 1rem;
-    transition: background-color 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    width: 100%;
 }
 
 .read-button:hover {
-    background-color: #777;
+    background: linear-gradient(135deg, #45a049, #3d8b40);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.5);
+    transform: translateY(-2px);
+}
+
+.read-button:active {
+    transform: translateY(1px);
 }
 
 @media (max-width: 768px) {
@@ -589,8 +627,8 @@ main {
 
 #headerSearchInput:focus,
 #hamburgerSearchInput:focus {
-    border-color: #888; /* Change border color on focus */
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Add a subtle glow */
+    border-color: #4CAF50; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Add a subtle glow */
     outline: none; /* Remove default outline */
 }
 
