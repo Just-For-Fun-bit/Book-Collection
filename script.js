@@ -1,145 +1,187 @@
-const bookContainer = document.getElementById('bookContainer');
-const listViewBtn = document.getElementById('listView');
-const gridViewBtn = document.getElementById('gridView');
-const navLinks = document.querySelectorAll('nav ul li a');
-const hamburgerNavLinks = document.querySelectorAll('.side-menu ul li a');
-const modal = document.getElementById('modal');
-const modalText = document.getElementById('modalText');
-const closeButton = document.querySelector('.close-button');
-const searchInput = document.getElementById('searchInput');
-const clearSearch = document.getElementById('clearSearch');
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
-const menuButton = document.getElementById('menuButton');
-const sideMenu = document.getElementById('sideMenu');
-const headerSearchInput = document.getElementById('headerSearchInput');
-const headerClearSearch = document.getElementById('headerClearSearch');
-const hamburgerSearchInput = document.getElementById('hamburgerSearchInput');
-const hamburgerClearSearch = document.getElementById('hamburgerClearSearch');
-const hamburgerListViewBtn = document.getElementById('hamburgerListView');
-const hamburgerGridViewBtn = document.getElementById('hamburgerGridView');
-const pinToTopButton = document.getElementById('pinToTop');
-const modalContent = document.querySelector('.modal-content');
+const bookContainer = document.getElementById("bookContainer");
+const listViewBtn = document.getElementById("listView");
+const gridViewBtn = document.getElementById("gridView");
+const navLinks = document.querySelectorAll("nav ul li a");
+const hamburgerNavLinks = document.querySelectorAll(".side-menu ul li a");
+const modal = document.getElementById("modal");
+const modalText = document.getElementById("modalText");
+const closeButton = document.querySelector(".close-button");
+const searchInput = document.getElementById("searchInput");
+const clearSearch = document.getElementById("clearSearch");
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".nav-menu");
+const menuButton = document.getElementById("menuButton");
+const sideMenu = document.getElementById("sideMenu");
+const headerSearchInput = document.getElementById("headerSearchInput");
+const headerClearSearch = document.getElementById("headerClearSearch");
+const hamburgerSearchInput = document.getElementById("hamburgerSearchInput");
+const hamburgerClearSearch = document.getElementById("hamburgerClearSearch");
+const hamburgerListViewBtn = document.getElementById("hamburgerListView");
+const hamburgerGridViewBtn = document.getElementById("hamburgerGridView");
+const pinToTopButton = document.getElementById("pinToTop");
+const modalContent = document.querySelector(".modal-content");
 
 const books = [
-    { 
-        title: "To Kill a Mockingbird", 
-        author: "Harper Lee", 
-        year: 1960, 
-        category: "fiction", 
-        image: "images/To Kill a Mockingbird.png"
-    },
-    { 
-        title: "1984", 
-        author: "George Orwell", 
-        year: 1949, 
-        category: "fiction", 
-        image: "images/1984.png"
-    },
-    { 
-        title: "Pride and Prejudice", 
-        author: "Jane Austen", 
-        year: 1813, 
-        category: "fiction", 
-        image: "images/Pride and Prejudice.png"
-    },
-    { 
-        title: "The Great Gatsby", 
-        author: "F. Scott Fitzgerald", 
-        year: 1925, 
-        category: "fiction", 
-        image: "images/The Great Gatsby.png"
-    },
-    { 
-        title: "One Hundred Years of Solitude", 
-        author: "Gabriel García Márquez", 
-        year: 1967, 
-        category: "fiction", 
-        image: "images/One Hundred Years of Solitude.png"
-    },
-    { 
-        title: "Brave New World", 
-        author: "Aldous Huxley", 
-        year: 1932, 
-        category: "fiction", 
-        image: "images/Brave New World.png"
-    },
-    { 
-        title: "A Brief History of Time", 
-        author: "Stephen Hawking", 
-        year: 1988, 
-        category: "non-fiction", 
-        image: "images/A Brief History of Time.png",
-        summary: "A landmark volume in science writing by one of the great minds of our time, Stephen Hawking's book explores such profound questions as: How did the universe begin—and what made its start possible?",
-        keyThemes: [
-            {
-                title: "Time and Space",
-                description: "Explores the nature of time and how it's interwoven with space in spacetime."
-            },
-            {
-                title: "The Universes Beginning",
-                description: "The Big Bang theory as the starting point of the cosmos."
-            },
-            {
-                title: "Black Holes",
-                description: "Describes black holes, their properties, and Hawking radiation."
-            },
-            {
-                title: "Unified Theory Quest",
-                description: "The search for a single theory combining relativity and quantum mechanics."
-            },
-            {
-                title: "Determinism vs. Free Will",
-                description: "Questions whether the universe is fully deterministic or allows for free will."
-            },
-            {
-                title: "Science and God",
-                description: "Examines if a creator is necessary to explain the universe's existence."
-            }
-        ]
-    },
-    { 
-        title: "The Immortal Life of Henrietta Lacks", 
-        author: "Rebecca Skloot", 
-        year: 2010, 
-        category: "non-fiction", 
-        image: "images/The Immortal Life of Henrietta Lacks.png"
-    },
-    { 
-        title: "Sapiens: A Brief History of Humankind", 
-        author: "Yuval Noah Harari", 
-        year: 2014, 
-        category: "non-fiction", 
-        image: "images/Sapiens - A Brief History of Humankind.png"
-    },
+  {
+    title: "To Kill a Mockingbird",
+    author: "Harper Lee",
+    year: 1960,
+    category: "fiction",
+    image: "images/To Kill a Mockingbird.png",
+  },
+  {
+    title: "1984",
+    author: "George Orwell",
+    year: 1949,
+    category: "fiction",
+    image: "images/1984.png",
+  },
+  {
+    title: "Pride and Prejudice",
+    author: "Jane Austen",
+    year: 1813,
+    category: "fiction",
+    image: "images/Pride and Prejudice.png",
+  },
+  {
+    title: "The Great Gatsby",
+    author: "F. Scott Fitzgerald",
+    year: 1925,
+    category: "fiction",
+    image: "images/The Great Gatsby.png",
+  },
+  {
+    title: "One Hundred Years of Solitude",
+    author: "Gabriel García Márquez",
+    year: 1967,
+    category: "fiction",
+    image: "images/One Hundred Years of Solitude.png",
+  },
+  {
+    title: "Brave New World",
+    author: "Aldous Huxley",
+    year: 1932,
+    category: "fiction",
+    image: "images/Brave New World.png",
+  },
+  {
+    title: "A Brief History of Time",
+    author: "Stephen Hawking",
+    year: 1988,
+    category: "non-fiction",
+    image: "images/A Brief History of Time.png",
+    downloadLink: "https://www.mediafire.com/file/2fdm1ljud0wnmly/A_Brief_History_of_Time_%2528_PDFDrive_%2529.pdf/file", // Add your URL here
+    summary:
+      "A landmark volume in science writing by one of the great minds of our time, Stephen Hawking's book explores such profound questions as: How did the universe begin—and what made its start possible?",
+    keyThemes: [
+      {
+        title: "Our Picture of the Universe",
+        description:
+          "Humanity’s understanding of the universe has evolved from ancient myths to modern science. Each discovery reshapes our perception of reality.",
+      },
+      {
+        title: "Space and Time",
+        description:
+          "Space and time are interconnected, forming “spacetime.” Einstein’s relativity shows time slows near heavy objects or at high speeds.",
+      },
+      {
+        title: "The Expanding Universe",
+        description:
+          "The universe is expanding, indicating it started with the Big Bang. Galaxies move apart, suggesting an ongoing cosmic growth.",
+      },
+      {
+        title: "The Uncertainty Principle",
+        description:
+          "Quantum mechanics reveals that particles behave unpredictably. We can't know both their position and speed with absolute certainty.",
+      },
+      {
+        title: "Elementary Particles and the Forces of Nature",
+        description:
+          "Matter is made of fundamental particles governed by four main forces. These forces shape the universe at every level.",
+      },
+      {
+        title: "Black Holes",
+        description:
+          "Black holes are intense gravitational regions formed from collapsing stars. They trap everything, even light, creating 'no return' zones.",
+      },
+      {
+        title: "Black Holes Ain’t So Black",
+        description:
+          "Hawking radiation suggests black holes emit energy and may eventually evaporate. They aren't entirely 'black' and may fade over time.",
+      },
+      {
+        title: "The Origin and Fate of the Universe",
+        description:
+          "The universe’s beginning and end remain mysteries. Possible outcomes include endless expansion or a future collapse.",
+      },
+      {
+        title: "The Arrow of Time",
+        description:
+          "Time flows forward due to increasing entropy, or disorder. This direction of time aligns with our experience of the universe.",
+      },
+      {
+        title: "Wormholes and Time Travel",
+        description:
+          "Wormholes might allow shortcuts through spacetime. Theoretical time travel is explored but faces significant scientific challenges.",
+      },
+      {
+        title: "The Unification of Physics",
+        description:
+          "A unified theory could link relativity and quantum mechanics. Achieving it would provide a complete framework of physical laws.",
+      },
+      {
+        title: "Conclusion",
+        description:
+          "Hawking reflects on humanity’s quest to understand the universe. A 'Theory of Everything' could be our ultimate scientific achievement.",
+      },
+    ],
+  },
+  {
+    title: "The Immortal Life of Henrietta Lacks",
+    author: "Rebecca Skloot",
+    year: 2010,
+    category: "non-fiction",
+    image: "images/The Immortal Life of Henrietta Lacks.png",
+  },
+  {
+    title: "Sapiens: A Brief History of Humankind",
+    author: "Yuval Noah Harari",
+    year: 2014,
+    category: "non-fiction",
+    image: "images/Sapiens - A Brief History of Humankind.png",
+  },
 ];
 
 function createBookElement(book) {
-    const bookElement = document.createElement('div');
-    bookElement.classList.add('book');
-    bookElement.innerHTML = `
+  const bookElement = document.createElement("div");
+  bookElement.classList.add("book");
+  bookElement.innerHTML = `
         <img src="${book.image}" alt="${book.title} cover" class="book-cover">
         <h2>${book.title}</h2>
         <p data-label="Author">${book.author}</p>
         <p data-label="Year">${book.year}</p>
-        <p data-label="Genre">${book.category.charAt(0).toUpperCase() + book.category.slice(1)}</p>
-        <button class="read-button">Read Book</button>
+        <p data-label="Genre">${
+          book.category.charAt(0).toUpperCase() + book.category.slice(1)
+        }</p>
+        <button class="read-button">Read Summary</button>
+        <button class="download-button">Download Book</button>
     `;
 
-    const readButton = bookElement.querySelector('.read-button');
+  const readButton = bookElement.querySelector(".read-button");
 
-    readButton.addEventListener('click', () => {
-        if (book.title === "A Brief History of Time") {
-            modalText.innerHTML = `
-                <div class="translation-toggle">
-                    <button id="translateBtn" class="translate-btn">
-                        <span class="translate-icon"></span>
-                    </button>
-                </div>
+  readButton.addEventListener("click", () => {
+    if (book.title === "A Brief History of Time") {
+      modalText.innerHTML = `
+                <button id="backButton" class="back-button">Back to Main Page</button> <!-- Back button at the top -->
                 <div class="modal-section">
                     <strong class="section-title">Key Themes:</strong>
                     <ul class="key-themes-list">
-                        ${book.keyThemes.map(theme => `<li class="key-theme-item"><strong>${theme.title}</strong>: ${theme.description}</li>`).join('')}
+                        ${book.keyThemes
+                          .map(
+                            (theme) =>
+                              `<li class="key-theme-item"><strong>${theme.title}</strong>: ${theme.description}</li>`
+                          )
+                          .join("")}
                     </ul>
                 </div>
                 <hr class="section-divider">
@@ -148,159 +190,181 @@ function createBookElement(book) {
                     <p>${book.summary}</p>
                     <p>Here's a more detailed summary of <em>A Brief History of Time</em>, with examples and real-life connections for each section:</p>
                     <ol>
-                        <li><strong>Space and Time as One</strong>
+                        <li><strong>Our Picture of the Universe</strong>
                             <ul>
-                                <li>Hawking explains that space and time are woven together in a single concept called "spacetime." When an object moves faster or is near something very heavy, like a planet, time moves differently — it slows down. This is why astronauts on the International Space Station, moving very fast, age just a bit slower than people on Earth.</li>
-                                <li><strong>Example:</strong> Imagine two twins: one stays on Earth while the other travels in a fast spaceship. When they reunite, the twin who traveled would be slightly younger due to experiencing time more slowly.</li>
-                                <li><strong>Real Life:</strong> GPS satellites orbiting Earth move so quickly that their clocks slow down. Engineers adjust for this so that GPS timing stays accurate for navigation.</li>
+                                <li>Humanity’s view of the universe has changed dramatically. Ancient cultures believed in an Earth-centered universe, where everything revolved around us. This idea was replaced by the sun-centered model, thanks to astronomers like Copernicus and Galileo.</li>
+                                <li><strong>Example:</strong> Imagine believing the Earth is flat and surrounded by water. Over time, evidence shows Earth is round, and there’s a vast universe beyond it.</li>
+                                <li><strong>Real Life:</strong> Today, telescopes let us see galaxies millions of light-years away. We now know Earth is just a tiny part of an enormous, expanding universe.</li>
                             </ul>
                         </li>
-                        <li><strong>The Expanding Universe and The Big Bang</strong>
+                        <li><strong>Space and Time</strong>
                             <ul>
-                                <li>The universe is getting bigger every second, as galaxies move further apart. This expansion suggests the universe began from an incredibly dense, hot point — the Big Bang. Observing cosmic microwave background radiation (heat left from the Big Bang) helps us understand this origin story.</li>
-                                <li><strong>Example:</strong> Picture a balloon with dots on it representing galaxies. As you blow up the balloon, the dots move further apart, just like galaxies in the expanding universe.</li>
-                                <li><strong>Real Life:</strong> Astronomers see galaxies moving away from us, with distant galaxies moving faster, confirming that the universe is expanding. This observation was first made by Edwin Hubble in 1929.</li>
+                                <li>Space and time are connected in something called "spacetime." Einstein’s theory of relativity shows that time moves slower near heavy objects (like planets) or for things moving very fast. This phenomenon is known as time dilation.</li>
+                                <li><strong>Example:</strong> Imagine a twin traveling in a fast spaceship while the other twin stays on Earth. When they reunite, the traveling twin would be slightly younger because they experienced time more slowly.</li>
+                                <li><strong>Real Life:</strong> GPS satellites orbiting Earth move so quickly that their clocks slow down. Engineers adjust for this effect to keep navigation accurate.</li>
                             </ul>
                         </li>
-                        <li><strong>Black Holes and Hawking Radiation</strong>
+                        <li><strong>The Expanding Universe</strong>
                             <ul>
-                                <li>Black holes form from massive stars collapsing. They are so dense that nothing, not even light, can escape their pull. Hawking proposed that black holes emit tiny amounts of energy, known as "Hawking radiation." Over time, this radiation could cause a black hole to slowly lose mass and disappear.</li>
-                                <li><strong>Example:</strong> Think of a vacuum cleaner that's so powerful it sucks up everything nearby, even light, making it invisible.</li>
-                                <li><strong>Real Life:</strong> Black holes are invisible to telescopes, but scientists detect them through the effects they have on nearby stars and gas clouds. In 2019, we saw the first image of a black hole using radio telescopes.</li>
+                                <li>The universe is constantly expanding, which suggests it began from a small, dense point — the Big Bang. We can see evidence of this expansion in the way galaxies move apart.</li>
+                                <li><strong>Example:</strong> Picture a balloon with dots on it. As you blow it up, the dots move further apart, just like galaxies do as the universe expands.</li>
+                                <li><strong>Real Life:</strong> Edwin Hubble discovered that distant galaxies are moving away from us, providing early evidence of an expanding universe. We also see leftover heat from the Big Bang, called cosmic microwave background radiation.</li>
                             </ul>
                         </li>
-                        <li><strong>Quantum Mechanics and Uncertainty</strong>
+                        <li><strong>The Uncertainty Principle</strong>
                             <ul>
-                                <li>Quantum mechanics studies very tiny particles that behave unpredictably. The Heisenberg Uncertainty Principle says we can't know both a particle's position and speed with precision. Instead, particles exist in "probabilities," meaning we can only predict the chances of where they might be.</li>
-                                <li><strong>Example:</strong> Imagine throwing a dice where you can't know both how it will roll and where it will land. All you know is the probability of each outcome.</li>
-                                <li><strong>Real Life:</strong> Quantum uncertainty is the foundation of modern electronics. In microchips, electrons behave in unpredictable ways, which engineers control to create the binary code used in computing.</li>
+                                <li>In quantum mechanics, the Uncertainty Principle shows that tiny particles like electrons don’t have exact positions and speeds. Instead, they exist as probabilities, meaning we can only predict their behavior within a range.</li>
+                                <li><strong>Example:</strong> Imagine rolling a dice where you can’t know exactly where it will land and what number will show. You can only predict the likelihood of each result.</li>
+                                <li><strong>Real Life:</strong> This uncertainty is crucial for technologies like microchips, where engineers use quantum properties to create complex circuits in modern electronics.</li>
                             </ul>
                         </li>
-                        <li><strong>Why Time Goes Forward</strong>
+                        <li><strong>Elementary Particles and the Forces of Nature</strong>
                             <ul>
-                                <li>Hawking explains that time's forward direction (the "arrow of time") is tied to entropy, which is the tendency of systems to move from order to disorder. This is why we see eggs breaking but never spontaneously reforming — disorder (broken eggs) is more likely than order (whole eggs).</li>
-                                <li><strong>Example:</strong> Think of a deck of cards. If you shuffle them, they become disordered, and it's nearly impossible to return them to their original sequence.</li>
-                                <li><strong>Real Life:</strong> In daily life, we see entropy when things naturally decay or age over time, like a rusting car or a melting ice cube.</li>
+                                <li>Everything in the universe is made up of fundamental particles. These particles interact through four main forces: gravity, electromagnetism, the strong nuclear force, and the weak nuclear force.</li>
+                                <li><strong>Example:</strong> Think of the universe as a Lego set, where atoms are the blocks and the forces are the connections holding them together.</li>
+                                <li><strong>Real Life:</strong> In particle accelerators, scientists observe particles interacting at extremely high speeds, helping us understand how matter is built and held together.</li>
                             </ul>
                         </li>
-                        <li><strong>The Shape of the Universe</strong>
+                        <li><strong>Black Holes</strong>
                             <ul>
-                                <li>The universe's shape is affected by the mass of objects within it. Hawking considers that space might curve like the surface of a sphere, meaning it's finite but without edges. This concept raises questions about whether the universe will keep expanding or collapse back on itself.</li>
-                                <li><strong>Example:</strong> Imagine the surface of a globe — you can keep moving without ever reaching an "edge," just like a closed, curved universe.</li>
-                                <li><strong>Real Life:</strong> Astronomers study cosmic light to map the universe's shape. Current evidence suggests a flat shape, meaning it's likely to expand forever.</li>
+                                <li>Black holes form when massive stars collapse, creating regions with gravity so strong that nothing can escape, not even light. This is why they appear "black" in space.</li>
+                                <li><strong>Example:</strong> Imagine a vacuum cleaner so powerful that once something gets close, it can’t escape. Black holes are like this but much stronger.</li>
+                                <li><strong>Real Life:</strong> In 2019, scientists captured the first-ever image of a black hole using a network of telescopes around the world. This confirmed many theories about black holes' existence and appearance.</li>
                             </ul>
                         </li>
-                        <li><strong>Imaginary Time and Boundless Universe</strong>
+                        <li><strong>Black Holes Ain’t So Black</strong>
                             <ul>
-                                <li>Hawking suggests a concept called "imaginary time," where time acts like another spatial dimension. This would allow the universe to be finite yet without boundaries, like Earth's surface. In this view, the universe may not have a specific starting point, changing how we think about its beginning.</li>
-                                <li><strong>Example:</strong> Picture time as another direction you can travel, similar to moving in space. Instead of having a beginning or end, time could loop or flow in multiple directions.</li>
-                                <li><strong>Real Life:</strong> Imaginary time is mainly theoretical but helps physicists think about the universe's boundaries. It supports the idea that the universe could have no clear "edge" or "start," making it infinite in scope.</li>
+                                <li>Hawking proposed that black holes emit radiation (Hawking radiation) and can lose mass over time, meaning they could eventually "evaporate." This challenges the idea that black holes are completely dark and unchanging.</li>
+                                <li><strong>Example:</strong> Think of a slow-burning fire. Even though it’s contained, it still releases heat and light, eventually fading away. Similarly, black holes emit energy and may disappear over time.</li>
+                                <li><strong>Real Life:</strong> Hawking’s theory is significant because it combines ideas from quantum mechanics and relativity, helping scientists understand the boundaries of physics.</li>
                             </ul>
                         </li>
-                        <li><strong>The Search for a Unified Theory</strong>
+                        <li><strong>The Origin and Fate of the Universe</strong>
                             <ul>
-                                <li>Hawking discusses the goal of combining relativity (the physics of large objects) and quantum mechanics (the physics of tiny particles) into a single "Theory of Everything." This theory would explain all fundamental forces and particles in the universe, but achieving it remains a major scientific challenge.</li>
-                                <li><strong>Example:</strong> Like trying to find a single recipe that explains how to cook every meal, this theory would cover all phenomena in the universe.</li>
-                                <li><strong>Real Life:</strong> String theory and other complex models are attempts to unify these forces, but they require testing with advanced technology not yet fully available.</li>
+                                <li>This chapter explores theories about how the universe began and how it might end. If it continues expanding forever, it may get colder and more spread out. Alternatively, it could eventually collapse back in a "Big Crunch."</li>
+                                <li><strong>Example:</strong> Imagine throwing a ball in the air. It either keeps rising, falls back down, or hovers somewhere in between. The universe could do something similar.</li>
+                                <li><strong>Real Life:</strong> Scientists study distant galaxies to measure the rate of expansion and predict whether the universe will keep expanding or collapse. Current data suggests it’s likely to keep expanding.</li>
                             </ul>
                         </li>
-                        <li><strong>The Power of Observation</strong>
+                        <li><strong>The Arrow of Time</strong>
                             <ul>
-                                <li>In quantum mechanics, simply observing a particle changes it. This "observer effect" suggests that the act of watching influences reality. This raises questions about whether the universe exists independently of observation or if observation is part of reality itself.</li>
-                                <li><strong>Example:</strong> Like a magician's trick that changes when you look closely, particles seem to behave differently under observation.</li>
-                                <li><strong>Real Life:</strong> In experiments like Schrödinger's Cat thought experiment, quantum particles exist in multiple states until observed, highlighting how observation impacts results.</li>
+                                <li>Time moves in one direction, which we experience as past, present, and future. This “arrow of time” is linked to entropy, where things tend to move from order to disorder (like ice melting or eggs breaking).</li>
+                                <li><strong>Example:</strong> Imagine shuffling a deck of cards. It’s easy to create disorder, but very hard to return them to their original order.</li>
+                                <li><strong>Real Life:</strong> Entropy affects our daily lives, as we see objects age, decay, and wear down over time, like a car rusting or milk spoiling.</li>
                             </ul>
                         </li>
-                        <li><strong>Are Events Predetermined?</strong>
+                        <li><strong>Wormholes and Time Travel</strong>
                             <ul>
-                                <li>Hawking questions if everything is pre-set or if quantum randomness introduces uncertainty. While larger objects follow predictable rules, tiny particles act randomly, suggesting that not all events may be predetermined. This opens up the possibility of free will, where not everything is fully planned out.</li>
-                                <li><strong>Example:</strong> Imagine rolling a dice — the outcome isn't fixed, introducing a level of chance rather than certainty.</li>
-                                <li><strong>Real Life:</strong> Deterministic systems (like planetary orbits) follow set paths, but quantum randomness affects technologies like encryption, where unpredictable patterns are necessary.</li>
+                                <li>Hawking explores the idea of wormholes, or shortcuts in spacetime that could potentially allow time travel. However, it’s highly theoretical and comes with many scientific challenges.</li>
+                                <li><strong>Example:</strong> Imagine folding a paper and punching a hole through it to connect two distant points. Wormholes could work like this, creating shortcuts in space.</li>
+                                <li><strong>Real Life:</strong> While we haven't found wormholes, the concept is explored in science fiction, like in *Interstellar*, which portrays traveling through space and time using such shortcuts.</li>
                             </ul>
                         </li>
-                        <li><strong>God and the Universe</strong>
+                        <li><strong>The Unification of Physics</strong>
                             <ul>
-                                <li>While not a religious book, Hawking briefly considers whether a creator is necessary to explain the universe's origin or if scientific laws alone could account for its existence. He leaves the answer open-ended, suggesting that a complete theory might explain the universe without the need for a creator.</li>
-                                <li><strong>Example:</strong> Like a clock that keeps ticking on its own once built, the universe might operate solely on its initial conditions and physical laws.</li>
-                                <li><strong>Real Life:</strong> This philosophical question remains unresolved, with some scientists and philosophers proposing that understanding the universe's laws could offer answers that do not require divine intervention.</li>
+                                <li>Scientists seek a single theory that unites general relativity (large objects) and quantum mechanics (tiny particles). A unified theory would explain all the forces and particles in the universe.</li>
+                                <li><strong>Example:</strong> Like finding a recipe that explains how to make every dish, a unified theory would cover all known phenomena.</li>
+                                <li><strong>Real Life:</strong> String theory is one attempt to unify physics, but it’s incredibly complex and hasn’t been proven. Advances in this field could revolutionize our understanding of the universe.</li>
                             </ul>
                         </li>
-                        <li><strong>Human Curiosity and Scientific Progress</strong>
+                        <li><strong>Conclusion</strong>
                             <ul>
-                                <li>Hawking expresses hope in humanity's ability to solve the mysteries of the universe. He encourages continued exploration, believing that a unified theory could allow us to understand the cosmos fully, making it one of humanity's greatest achievements.</li>
-                                <li><strong>Example:</strong> Like explorers mapping unknown lands, scientists aim to uncover every corner of the universe's structure and laws.</li>
-                                <li><strong>Real Life:</strong> Scientific advances, such as the discovery of the Higgs boson and gravitational waves, reflect this ongoing quest to understand the universe on every level.</li>
+                                <li>Hawking reflects on humanity's desire to understand the universe fully. He believes that a "Theory of Everything" would mark a significant achievement, bringing us closer to knowing our place in the cosmos.</li>
+                                <li><strong>Example:</strong> Imagine solving a puzzle that reveals the entire picture of the universe. This would be a complete understanding of all physical laws and mysteries.</li>
+                                <li><strong>Real Life:</strong> Modern physics continues this quest, with scientists working toward a comprehensive theory to answer fundamental questions about existence and the universe’s structure.</li>
                             </ul>
                         </li>
                     </ol>
                 </div>
             `;
-        } else {
-            modalText.innerHTML = `
+    } else {
+      modalText.innerHTML = `
                 <h2>${book.title}</h2>
                 <p>Book details will be added soon.</p>
             `;
-        }
-        modal.style.display = 'block';
-    });
+    }
+    modal.classList.add("show"); // Add class to trigger the new styles
 
-    return bookElement;
+    // Add event listener for the back button
+    const backButton = document.getElementById("backButton");
+    if (backButton) {
+      backButton.addEventListener("click", () => {
+        modal.classList.remove("show"); // Close the modal
+        window.location.href = "index.html"; // Navigate back to the main page
+      });
+    }
+  });
+
+  const downloadButton = bookElement.querySelector(".download-button");
+  downloadButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (book.title === "A Brief History of Time") {
+        window.location.href = book.downloadLink; // Redirect to the download link
+    } else {
+        alert(book.title + " will be available for download soon.");
+    }
+  });
+
+  return bookElement;
 }
 
-function displayBooks(category = 'all', query = '') {
-    bookContainer.innerHTML = '';
-    books.forEach(book => {
-        if ((category === 'all' || book.category === category) &&
-            (book.title.toLowerCase().includes(query) || book.author.toLowerCase().includes(query))) {
-            const bookElement = createBookElement(book);
-            bookContainer.appendChild(bookElement);
-        }
-    });
+function displayBooks(category = "all", query = "") {
+  bookContainer.innerHTML = "";
+  books.forEach((book) => {
+    if (
+      (category === "all" || book.category === category) &&
+      (book.title.toLowerCase().includes(query) ||
+        book.author.toLowerCase().includes(query))
+    ) {
+      const bookElement = createBookElement(book);
+      bookContainer.appendChild(bookElement);
+    }
+  });
 }
 
 function setListView() {
-    bookContainer.classList.remove('grid-view');
-    bookContainer.classList.add('list-view');
-    listViewBtn.setAttribute('aria-pressed', 'true');
-    gridViewBtn.setAttribute('aria-pressed', 'false');
-    hamburgerListViewBtn.setAttribute('aria-pressed', 'true');
-    hamburgerGridViewBtn.setAttribute('aria-pressed', 'false');
+  bookContainer.classList.remove("grid-view");
+  bookContainer.classList.add("list-view");
+  listViewBtn.setAttribute("aria-pressed", "true");
+  gridViewBtn.setAttribute("aria-pressed", "false");
+  hamburgerListViewBtn.setAttribute("aria-pressed", "true");
+  hamburgerGridViewBtn.setAttribute("aria-pressed", "false");
 }
 
 function setGridView() {
-    bookContainer.classList.remove('list-view');
-    bookContainer.classList.add('grid-view');
-    gridViewBtn.setAttribute('aria-pressed', 'true');
-    listViewBtn.setAttribute('aria-pressed', 'false');
-    hamburgerGridViewBtn.setAttribute('aria-pressed', 'true');
-    hamburgerListViewBtn.setAttribute('aria-pressed', 'false');
+  bookContainer.classList.remove("list-view");
+  bookContainer.classList.add("grid-view");
+  gridViewBtn.setAttribute("aria-pressed", "true");
+  listViewBtn.setAttribute("aria-pressed", "false");
+  hamburgerGridViewBtn.setAttribute("aria-pressed", "true");
+  hamburgerListViewBtn.setAttribute("aria-pressed", "false");
 }
 
 function setActiveNavLink(clickedLink) {
-    navLinks.forEach(link => link.classList.remove('active'));
-    hamburgerNavLinks.forEach(link => link.classList.remove('active'));
-    clickedLink.classList.add('active');
+  navLinks.forEach((link) => link.classList.remove("active"));
+  hamburgerNavLinks.forEach((link) => link.classList.remove("active"));
+  clickedLink.classList.add("active");
 }
 
-listViewBtn.addEventListener('click', setListView);
-gridViewBtn.addEventListener('click', setGridView);
+listViewBtn.addEventListener("click", setListView);
+gridViewBtn.addEventListener("click", setGridView);
 
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const category = e.target.getAttribute('data-category');
-        setActiveNavLink(e.target);
-        displayBooks(category);
-    });
+navLinks.forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    const category = e.target.getAttribute("data-category");
+    setActiveNavLink(e.target);
+    displayBooks(category);
+  });
 });
 
-hamburgerNavLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const category = e.target.getAttribute('data-category');
-        setActiveNavLink(e.target);
-        displayBooks(category);
-    });
+hamburgerNavLinks.forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    const category = e.target.getAttribute("data-category");
+    setActiveNavLink(e.target);
+    displayBooks(category);
+  });
 });
 
 // Initial display
@@ -308,104 +372,148 @@ displayBooks();
 setActiveNavLink(document.querySelector('nav ul li a[data-category="all"]'));
 setListView();
 
-closeButton.addEventListener('click', () => {
-    modal.style.display = 'none';
+closeButton.addEventListener("click", () => {
+  modal.style.display = "none";
 });
 
-window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-        modal.style.display = 'none';
-    }
+window.addEventListener("click", (event) => {
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
 });
 
 function handleSearchInput(inputElement, clearButton) {
-    inputElement.addEventListener('input', () => {
-        const query = inputElement.value.toLowerCase();
-        displayBooks('all', query);
-        clearButton.style.display = query ? 'block' : 'none'; // Show clear button if there's input
-    });
+  inputElement.addEventListener("input", () => {
+    const query = inputElement.value.toLowerCase();
+    displayBooks("all", query);
+    clearButton.style.display = query ? "block" : "none"; // Show clear button if there's input
+  });
 
-    clearButton.addEventListener('click', () => {
-        inputElement.value = '';
-        displayBooks('all', ''); // Clear search results
-        clearButton.style.display = 'none'; // Hide clear button
-        inputElement.focus(); // Focus back on the input
-    });
+  clearButton.addEventListener("click", () => {
+    inputElement.value = "";
+    displayBooks("all", ""); // Clear search results
+    clearButton.style.display = "none"; // Hide clear button
+    inputElement.focus(); // Focus back on the input
+  });
 }
 
 handleSearchInput(headerSearchInput, headerClearSearch);
 handleSearchInput(hamburgerSearchInput, hamburgerClearSearch);
 
-menuButton.addEventListener('click', () => {
-    sideMenu.classList.toggle('active');
+menuButton.addEventListener("click", () => {
+  sideMenu.classList.toggle("active");
 });
 
-document.addEventListener('click', (event) => {
-    if (!sideMenu.contains(event.target) && !menuButton.contains(event.target)) {
-        sideMenu.classList.remove('active');
+document.addEventListener("click", (event) => {
+  if (!sideMenu.contains(event.target) && !menuButton.contains(event.target)) {
+    sideMenu.classList.remove("active");
+  }
+});
+
+hamburgerListViewBtn.addEventListener("click", setListView);
+hamburgerGridViewBtn.addEventListener("click", setGridView);
+
+// Function to smoothly scroll to the top
+function smoothScrollToTop(event) {
+  // Prevent the initial click from triggering the stop
+  event.stopPropagation();
+
+  const scrollDuration = 1000;
+  const startPosition = window.scrollY;
+  const startTime = performance.now();
+  let isScrolling = true; // Flag to track if scrolling is active
+  let animationFrame;
+
+  function scroll() {
+    if (!isScrolling) {
+      cancelAnimationFrame(animationFrame);
+      return;
     }
-});
 
-hamburgerListViewBtn.addEventListener('click', setListView);
-hamburgerGridViewBtn.addEventListener('click', setGridView);
+    const currentTime = performance.now();
+    const timeElapsed = currentTime - startTime;
+    const scrollProgress = Math.min(timeElapsed / scrollDuration, 1);
 
-function smoothScrollToTop() {
-    const totalScrollDistance = window.scrollY;
-    const scrollStep = totalScrollDistance / 50;
+    const scrollAmount = startPosition * (1 - scrollProgress);
+    window.scrollTo(0, scrollAmount);
 
-    const scrollInterval = setInterval(() => {
-        if (window.scrollY > 0) {
-            window.scrollBy(0, -scrollStep);
-        } else {
-            clearInterval(scrollInterval);
-        }
-    }, 10);
+    if (scrollProgress < 1) {
+      animationFrame = requestAnimationFrame(scroll);
+    }
+  }
+
+  // Function to stop scrolling
+  function stopScrolling(e) {
+    // Prevent stopping on the initial button click
+    if (e.target !== pinToTopButton) {
+      isScrolling = false;
+      cancelAnimationFrame(animationFrame);
+      document.removeEventListener("click", stopScrolling);
+    }
+  }
+
+  // Add click listener to stop scrolling
+  document.addEventListener("click", stopScrolling);
+
+  // Start scrolling
+  animationFrame = requestAnimationFrame(scroll);
 }
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-        pinToTopButton.style.display = 'flex';
-    } else {
-        pinToTopButton.style.display = 'none';
-    }
+// Add event listener to the "Pin to Top" button
+if (pinToTopButton) {
+  pinToTopButton.addEventListener("click", smoothScrollToTop);
+}
+
+// Show or hide the "Pin to Top" button based on scroll position
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 100) {
+    pinToTopButton.style.display = "flex";
+  } else {
+    pinToTopButton.style.display = "none";
+  }
 });
 
-pinToTopButton.addEventListener('click', smoothScrollToTop);
-
-document.querySelectorAll('.read-button').forEach(button => {
-    button.addEventListener('click', () => {
-        modal.style.display = 'block';
-    });
+document.querySelectorAll(".read-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    modal.style.display = "block";
+  });
 });
 
 // Add this after your existing modal code
-document.addEventListener('DOMContentLoaded', () => {
-    const modalContent = document.querySelector('.modal-content');
-    
-    modalContent.addEventListener('scroll', () => {
-        const scrollPercentage = modalContent.scrollTop / (modalContent.scrollHeight - modalContent.clientHeight);
-        modalContent.style.setProperty('--scroll-percentage', scrollPercentage);
-    });
+document.addEventListener("DOMContentLoaded", () => {
+  const modalContent = document.querySelector(".modal-content");
+
+  modalContent.addEventListener("scroll", () => {
+    const scrollPercentage =
+      modalContent.scrollTop /
+      (modalContent.scrollHeight - modalContent.clientHeight);
+    modalContent.style.setProperty("--scroll-percentage", scrollPercentage);
+  });
 });
 
 const detailedContent = {
-    english: [
-        {
-            title: "Space and Time as One",
-            content: "Hawking explains that space and time are woven together in a single concept called \"spacetime.\" When an object moves faster or is near something very heavy, like a planet, time moves differently — it slows down. This is why astronauts on the International Space Station, moving very fast, age just a bit slower than people on Earth.",
-            example: "Imagine two twins: one stays on Earth while the other travels in a fast spaceship. When they reunite, the twin who traveled would be slightly younger due to experiencing time more slowly.",
-            realLife: "GPS satellites orbiting Earth move so quickly that their clocks slow down. Engineers adjust for this so that GPS timing stays accurate for navigation."
-        }
-    ]
+  english: [
+    {
+      title: "Space and Time as One",
+      content:
+        'Hawking explains that space and time are woven together in a single concept called "spacetime." When an object moves faster or is near something very heavy, like a planet, time moves differently — it slows down. This is why astronauts on the International Space Station, moving very fast, age just a bit slower than people on Earth.',
+      example:
+        "Imagine two twins: one stays on Earth while the other travels in a fast spaceship. When they reunite, the twin who traveled would be slightly younger due to experiencing time more slowly.",
+      realLife:
+        "GPS satellites orbiting Earth move so quickly that their clocks slow down. Engineers adjust for this so that GPS timing stays accurate for navigation.",
+    },
+  ],
 };
 
 function toggleLanguage(isHindi) {
-    const content = document.getElementById('translatable-content');
-    const data = detailedContent.english;
-    
-    content.innerHTML = `
+  const content = document.getElementById("translatable-content");
+  const data = detailedContent.english;
+
+  content.innerHTML = `
         <ol>
-            ${data.map(section => `
+            ${data
+              .map(
+                (section) => `
                 <li><strong>${section.title}</strong>
                     <ul>
                         <li>${section.content}</li>
@@ -413,8 +521,74 @@ function toggleLanguage(isHindi) {
                         <li><strong>Real Life:</strong> ${section.realLife}</li>
                     </ul>
                 </li>
-            `).join('')}
+            `
+              )
+              .join("")}
         </ol>
     `;
 }
+
+// Function to create the modal content with back button
+function createModalContent(book) {
+  const scrollPosition = window.scrollY;
+
+  const modalContent = `
+
+        <!-- Key Themes Section -->
+        <div class="modal-section">
+            <strong class="section-title">Key Themes:</strong>
+            <ul class="key-themes-list">
+                ${book.keyThemes
+                    .map(
+                        (theme) => `
+                        <li class="key-theme-item">
+                            <strong>${theme.title}</strong>: ${theme.description}
+                        </li>
+                    `
+                    )
+                    .join("")}
+            </ul>
+        </div>
+    `;
+
+  modalText.innerHTML = modalContent;
+  document.body.classList.add("modal-open");
+
+  const modalBackButton = document.getElementById("modalBackButton");
+  if (modalBackButton) {
+    modalBackButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      modal.style.display = "none";
+      document.body.classList.remove("modal-open");
+      window.scrollTo(0, scrollPosition);
+    });
+  }
+}
+
+// Update your existing read button click handler
+document.querySelectorAll(".read-button").forEach((button) => {
+  button.addEventListener("click", (e) => {
+    e.preventDefault(); // Prevent default button behavior
+    const scrollPosition = window.scrollY; // Store scroll position
+    modal.style.display = "block";
+    document.body.classList.add("modal-open");
+    const book = getBookData(button);
+    createModalContent(book);
+  });
+});
+
+// Update modal close handlers
+document.querySelector(".close-button").addEventListener("click", (e) => {
+  e.preventDefault();
+  modal.style.display = "none";
+  document.body.classList.remove("modal-open");
+});
+
+window.addEventListener("click", (event) => {
+  if (event.target === modal) {
+    event.preventDefault();
+    modal.style.display = "none";
+    document.body.classList.remove("modal-open");
+  }
+});
 
